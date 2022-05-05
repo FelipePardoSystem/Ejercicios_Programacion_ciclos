@@ -1,0 +1,27 @@
+import os
+
+os.system("cls")
+NOTA1=float(input("Ingrese la primera nota del alumno: "))
+NOTA2=float(input("Ingrese la segunda nota del alumno: "))
+NOTA3=float(input("Ingrese la tercera nota del alumno: "))
+SUMA = NOTA1+NOTA2+NOTA3
+PROMEDIO= SUMA/3
+
+
+if PROMEDIO >=4:
+    estado="APROBADO"
+else:
+    estado="REPROBADO"    
+
+
+os.system("cls")
+print(f'''
+      
+      
+      -----TICKET-----
+      
+      Nota 1:{NOTA1} Nota 2 {NOTA2}  Nota 3 {NOTA3}
+      
+      
+      Promedio: {PROMEDIO}  Estado : {estado}
+      ''')
