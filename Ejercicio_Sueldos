@@ -1,0 +1,45 @@
+import os
+#-------------Varieables--------------
+nombre=""
+edad=""
+sexo=0
+valor_horas=0
+horas_trabajadas=0
+
+
+#-------------Codigo Principal--------
+os.system("cls")
+nombre=str (input("Ingrese el nombre del empleado: "))
+edad=int (input("Ingrese la edad del empleado: "))
+sexo= str (input("Ingresa el Sexo del empleado M/F/No binario: "))
+valor_horas=int (input("Ingrese el valor asignado a sus horas de trabajo: "))
+horas_trabajadas= float (input("Ingrese la cantidad de horas trabajadas: "))
+
+sueldo_bruto=valor_horas * horas_trabajadas
+descuento_salud= sueldo_bruto*0.7
+pesion= sueldo_bruto*0.13
+sueldo_liquido= sueldo_bruto - descuento_salud - pesion
+
+if (sexo=="M"):
+    print("M")
+    jubilar= 65-edad
+elif(sexo=="F"):
+    print("F")
+    jubilar= 60-edad
+
+
+#------------Resultado----------------
+os.system("cls")
+
+print(f'''
+      
+      Nombre:{nombre}
+      Edad:{edad}           Sexo:{sexo}
+      Valor hora:$ {valor_horas}         Horas trabajadas: {horas_trabajadas}
+      Sueldo bruto: {sueldo_bruto}
+      Descuento Salud  7%: {descuento_salud}
+      Descuento Pension  13%: {pesion}
+      Sueldo liquido: {sueldo_liquido}
+      Esta persona se jubilará en: {jubilar} años.
+      
+      ''')
