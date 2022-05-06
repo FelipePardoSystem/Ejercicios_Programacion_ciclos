@@ -1,2 +1,2 @@
-# Ejercicio_sueldos
+# Ejercicios_clase_programacion
 Ejercicio sueldos
