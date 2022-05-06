@@ -1,0 +1,42 @@
+import os 
+#-------------------variables----------------
+NOMBRE = "" # Nombre del sujeto
+PESO=0 # Peso en kilogramos del sujeto
+ETATURA= 0 # estatura establecida en metros
+IMC =0 
+clasificacion = ""  # Define si es obeso , normal o bajo peso
+#---------------------Codigo principal---------------
+os.system ("cls")
+print("")
+NOMBRE = str(input("Por favor ingrese su nombre: ")).capitalize()
+PESO = int(input("Por favor ingrese su peso en kilogramos: "))
+ESTATURA = float(input( "Por favor ingrese su estatura en metros: "))
+IMC= ( PESO/ ESTATURA**2)
+
+if IMC<16:
+    clasificacion = "Infrapeso : Delgadez severa"
+elif 16 <= IMC <=16.99:
+    clasificacion = "Infrapeso : Delgadez moderada"
+elif 17 <= IMC <=18.49:
+    clasificacion = "Infrapeso : Delgadez moderada" 
+elif 18.50 <= IMC <= 24.99:
+    clasificacion = "Peso normal"
+elif 25.0 <= IMC <= 29.99 :
+    clasificacion = "Sobrepeso"
+elif 30.00 <= IMC <= 34.99 :
+    clasificacion = "Obeso:Tipo I"
+elif 35 <= IMC <= 40 :
+    clasificacion = "Obeso:Tipo II"
+elif IMC >= 40 :
+    clasificacion= "Obeso:Tipo III"
+os.system("cls")
+print(f'''
+      -------------------TICKET----------------------
+      Nombre  : {NOMBRE}
+      Peso    : {PESO}
+      Estatura: {ESTATURA}
+      
+            IMC : {IMC}          Clasificacion: {clasificacion}
+    
+       Gracias por utilizar nuestros servicios de IMC
+       ''')
