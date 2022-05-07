@@ -1,0 +1,56 @@
+import os
+#-----------Variables----------
+OPCION_MENU=0
+NOMBRE_PRODUCTO=""
+VALOR_PRODUCTO=0
+CANTIDAD=0
+TOTAL=0
+ES_HAPPY= "N"   "S"
+BEBIDA=0
+
+
+RONCOLA=0
+CERVEZA=0
+BEBIDA=0
+#----------Codigo Principal----------
+os.system("cls")
+OPCION_MENU= int(input('''
+    ----------MENÚ--------
+    1.- Vodka Tónica $5500
+    2.- Ron Cola     $5000
+    3.- Cerveza      $2000
+    4.- Bebida       $1500
+    
+    
+    Ingrese opción: '''))
+if OPCION_MENU==1:
+    NOMBRE_PRODUCTO= "Vodka Tónica"
+    VALOR_PRODUCTO=5500
+if OPCION_MENU==2:
+    NOMBRE_PRODUCTO= "Ron Cola"
+    VALOR_PRODUCTO=5000
+if OPCION_MENU==3:
+    NOMBRE_PRODUCTO= "Cerveza"
+    VALOR_PRODUCTO=2000
+if OPCION_MENU==4:
+    NOMBRE_PRODUCTO= "Bebida"
+    VALOR_PRODUCTO=1500
+CANTIDAD= int(input(f"¿Cuantos {NOMBRE_PRODUCTO} desea ordenar?"))
+TOTAL=CANTIDAD*VALOR_PRODUCTO
+print(f" subtotal ${TOTAL}")
+ES_HAPPY=str(input("¿Hay Happy Hour? S/N ")).upper()
+if ES_HAPPY== "S":
+    TOTAL=TOTAL/2
+#print la boleta con todos los datos
+os.system("cls")
+print(f''' 
+      -----------Cuenta-----------
+      Cuenta total:{CANTIDAD}x{NOMBRE_PRODUCTO}={TOTAL}
+      
+      Descuento Happy our: {ES_HAPPY}
+      
+      Su cuenta total es de : {TOTAL}
+      
+      Gracias por comprar en nuestro Restaurante.
+      '''
+      )
