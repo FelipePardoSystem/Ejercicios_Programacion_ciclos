@@ -1,0 +1,17 @@
+print("\n------menú-------")
+opcion=""
+while True:
+    
+    opcion=str(input('''
+    -----Menú
+    1.- Opcion A
+    2.- Opcion B
+    3.- Salir
+    
+    Elija opción:'''))
+    if opcion=="1":
+        print("A")
+    if opcion =="2":
+        print("B")
+    if opcion=="3":
+        break
