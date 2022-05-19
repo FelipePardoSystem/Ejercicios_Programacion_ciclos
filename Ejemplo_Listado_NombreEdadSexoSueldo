@@ -1,0 +1,77 @@
+import os 
+os.system("cls")
+
+#----------------Variables-------------
+
+nombres=""
+lista_nombres=[]
+edad=0
+lista_edades=[]
+sexo=""
+lista_sexo=[]
+sueldo=""
+lista_sueldos=[]
+
+#--------------Codigo principal--------
+while True:
+    os.system("cls")
+    opcion_menu=str(input('''
+    --------MENÚ-------
+    1.-Cargar Datos
+    2.-Listar Datos
+    3.-Salir
+    
+    Ingrese opcion:   '''))
+    if opcion_menu=="1":
+        os.system("cls")
+        print("\n-----CARGAR DATOS----")
+        nombre=str(input("Ingrese nombre: ")).strip()
+        while not len(nombre)>0:
+            print("Error... no puede ser vacio")
+            nombre=str(input("Ingrese nombre: ")).strip()
+        lista_nombres.append(nombre)
+        
+        
+        
+        edad= int(input("Ingrese edad: "))
+        while not 18<=edad<=100:
+            print("Error...ingrese una edad entre 18 y 100 años")
+            edad=int(input("Ingrese edad: "))
+        lista_edades.append(edad)
+        
+        sexo=str(input("Ingrese Sexo F/M: ")).upper()
+        while sexo not in ["F", "M"]:
+            print("Por favor ingrese un sexo valido para el sistema.")
+            sexo=str(input("Ingrese Sexo F/M: ")).strip()
+        lista_sexo.append(sexo)
+        
+        sueldo=int(input("Ingrese sueldo $: "))
+        while not sueldo>=340000:
+            print("Error... Ingrese un sueldo superior a $340000")
+            sueldo=int(input("Ingrese sueldo $: "))
+        lista_sueldos.append(sueldo)
+        
+        
+        
+        print(f'''
+              {lista_nombres}
+              {lista_edades}
+              {lista_sexo}
+              {lista_sueldos}
+              ''')
+        os.system("pause")
+    elif opcion_menu=="2":
+        os.system("cls")
+        #nombre edad años
+        #Pablo 23 años
+        
+        print("n\-------LISTAR DATOS--------")
+        for k in range(len(lista_nombres)):
+            print(f'''
+                   Su nombre es :{lista_nombres[k]} Su edad es : {lista_edades[k]} años Su sexo es:  {lista_sexo[k]} Su sueldo es:  {lista_sueldos[k]}
+                     
+   ''')
+        os.system("pause")
+    elif opcion_menu=="3":
+        break
+        
