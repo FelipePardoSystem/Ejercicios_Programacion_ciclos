@@ -1,0 +1,93 @@
+import os
+os.system("cls")
+
+#-----------Variables---------
+opcion_menu="0"
+nombre=""
+lista_nombres=[]
+edad=0
+lista_edad=[]
+run=""
+lista_runs=[]
+#--------Codigo principal-------
+while True:
+    os.system("cls")
+    opcion_menu=str(input('''
+    ---------------Menú------------
+    1.- Agregar usuario
+    2.- Listar usuarios
+    3.- Buscar usuario por run
+    4.- Salir                 
+    
+    Elija una opción por favor: '''))
+    
+    if opcion_menu=="1":
+        os.system("cls")
+        print("\n-----CARGAR DATOS-----")
+        #Solicitaste datos al usuario (strip=limpiar espacios)
+        nombre=str(input("ingrese nombre: ")).strip()
+        while not len(nombre)>0:
+            print("Por favor ingrese un nombre valido: ")
+            nombre=str(input("ingrese nombre: ")).strip()
+        lista_nombres.append(nombre)
+        os.system("pause")
+        
+        os.system("cls")
+        edad= int(input("Ingrese edad: "))
+        # Mientras no se cumpla la regla de que debe ser mayor de edad , se inicia un bucle.
+        while not 18<=edad<=100:
+            print("Error...ingrese una edad entre 18 y 100 años")
+            edad=int(input("Ingrese edad: "))
+        lista_edad.append(edad)
+        os.system("pause")
+        
+        os.system("cls")
+        run=str(input("Ingrese su run por favor: "))
+        while not len(run)>0:
+            print("Error...No puede estar vacio")
+            run= str(input("ingrese Run: ")).strip()
+        lista_runs.append(run)
+        # Cranea como hacer una confirmacion de ingresar todo esto.
+        
+        os.system("pause")
+        
+        print(f'''
+              {lista_nombres}
+              {lista_edad}
+              {lista_runs}
+              ''')
+        os.system("pause")
+    elif opcion_menu=="2":
+        os.system("cls")
+        # Vamos a listar los datos , se nececita un print que recopile las listas encontradas
+        print("n\---------Lista de Usuarios registrados-------")
+        for k in range(len(lista_runs)):
+            print(f'''
+                  Su run es : {lista_runs[k]}
+                  Nombre usuario: {lista_nombres[k]}
+                      Su edad es: {lista_edad[k]}
+                      
+                      ''')
+        os.system("pause")
+    elif opcion_menu=="3":
+        os.system("cls")
+        print("n\------BUSCAR USUARIO POR RUT-------")
+        run= str(input("Ingrese run : ")).strip()
+        if run not in lista_runs:
+            print("NO esta registrado")
+        else:
+            k= lista_runs.index(run)
+            print(f'''Usuario encontrado correctamente
+                  Nombre: {lista_nombres[k]}
+                  Edad  : {lista_edad[k]} Años
+            Volviendo al menú anterior.
+              ''')
+        os.system("pause")
+        
+    elif opcion_menu=="4":
+        op=str(input("¿Estas Seguro de salir? S/N: ")).upper()
+        
+        os.system("cls")
+        print("Saliendo del sistema. . .")
+        os.system("pause")
+        break
