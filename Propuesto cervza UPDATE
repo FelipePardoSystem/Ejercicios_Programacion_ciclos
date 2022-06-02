@@ -1,0 +1,149 @@
+import os
+#------------Variables-----------
+opcion_menu=""
+codigo=""
+lista_codigos=[]
+nombre=""
+lista_nombres=[]
+precio=0 #debe ser mayor a cero
+lista_precios=[]
+estilo=""
+lista_estilos=[]
+pais_origen=""
+lista_pais_origen=[]
+abv=0 # Puede ser igual o mayor a 0
+lista_abv=[]
+obvservacion=""
+lista_observaciones=[]
+#----------codigo principal----------
+while True:
+    os.system("cls")
+    opcion_menu=str(input('''
+    ----------MENÚ-------)
+    1.- Registrar nueva cerveza.
+    2.- Listar cervezas.
+    3.- Buscar cerveza por codigo .
+    4.- Eliminar cerveza del sistema.
+    5.- Modificar registro de cerveza.
+    6.- Buscar cerveza por estilo.
+    7.- Ingresar observaciones.
+    8.- Salir
+
+
+    Elija una opción por favor: '''))
+
+    if opcion_menu=="1":
+        os.system("cls")
+        print("\n-------REGISTRAR NUEVA CERVEZA-------")
+        codigo=str(input("Ingrese código: ")).strip().upper()
+        while not len(codigo)==3:
+            print("Error...deben ser 3 caracteres , ingrese nuevamente")
+            codigo=str(input("Ingrese código: ")).strip().upper()
+            lista_codigos.append(codigo)
+        lista_codigos.append(codigo)
+        os.system("pause")
+
+        os.system("cls")
+        nombre=str(input("Ingrese nombre: ")).strip()
+        while not len(nombre)>0:
+            print("Por favor no deje este casillero en blanco , es necesario registar el nombre.")
+            nombre=str(input("ingrese nombre: ")).strip()
+        lista_nombres.append(nombre)
+        os.system("pause")
+
+        os.system("cls")
+        precio=int(input("Ingrese el precio de la cerveza por favor: "))
+        while not 0<=precio<=100000:
+            print("Error, ingrese un valor valido por favor. ")
+            precio=(input("Ingrese el precio de la cerveza por favor: $"))
+            lista_precios.append(precio)
+        os.system("pause")
+        os.system("cls")
+
+        estilo=str(input("Ingrese a que estilo pertenece: ")).strip()
+        while estilo not in ["Frutal","Ale","Amber"]:
+            print("Error , la cerveza debe ser Frutal , Ale o Amber , digite una de estas 3 opciones.")
+            estilo=str(input("Ingrese estilo: ")).strip()
+        lista_estilos.append(estilo)
+        os.system("pause")
+        os.system("cls")
+        avb=float(input("Ingrese AVB(Grado alcoholico): "))
+        while not avb>=0:
+            print("Error...debe ser mayor o igual a cero")
+            avb=float(input("Ingrese AVB: "))
+        lista_abv.append(avb)
+        os.system("pause")
+        observacion=str(input("¿Desea agregar una observacion? S/N : ")).upper()
+        if observacion=="N":
+            lista_observaciones.append("Sin observacion.")
+        else:
+            fecha=str(input("Ingrese fecha: dd/mm/aaaa :   "))
+            obs=str(input("Ingrese observacion: ")).strip()
+            observacion=(f'''
+            Fecha: {fecha} 
+            {obs}
+            ''')
+            lista_observaciones.append(observacion)
+    if opcion_menu=="2":
+        os.system("cls")
+        print("\n--------LISTA DE CERVEZAS--------")
+        for k in range(len(lista_nombres)):
+            print(f'''
+                Nombre de la Cerveza: {lista_nombres [k] }
+                Grado alcoholico: {lista_abv [k] }%
+                ''')
+        os.system("pause")
+    if opcion_menu=="3":
+        os.system("cls")
+        print("\n--------BUSCAR POR CODIGO------")
+        codigo=str(input("Ingrese codigo: ")).upper().strip()
+        while not len(codigo)==3:
+            print("Error...deben ser 3 caracteres , ingrese nuevamente")
+            codigo=str(input("Ingrese código: ")).strip().upper()
+            #  vAMOS A CONSULTAR SI ESTA CONTENIDO EL CODIGO
+            if codigo not in lista_codigos:
+                print("No hay resgistro alguno del codigo ingresado , ingrese codigo  nuevamente")
+            else: #SI ESTA EL CODIGO Y AHORA NECESITAMOS DETERMINAR LA POSICION (INDEX
+                k = lista_codigos.index(codigo)
+                print(f'''
+                Nombre de la Cerveza: {lista_nombres [k] }
+                Grado alcoholico: {lista_abv [k] }%
+                ''')
+                os.system("pause")
+    if opcion_menu=="4":
+        os.system("cls")
+        print("\n--------ELIMINAR CERVEZA------")
+        codigo=str(input("Ingrese codigo: ")).upper().strip()
+        while not len(codigo)==3:
+            print("Error...deben ser 3 caracteres , ingrese nuevamente")
+            codigo=str(input("Ingrese código: ")).strip().upper()
+            #  vAMOS A CONSULTAR SI ESTA CONTENIDO EL CODIGO
+            if codigo not in lista_codigos:
+                print("No hay resgistro alguno del codigo ingresado , ingrese codigo  nuevamente")
+            else:
+                k= lista_codigos.index(codigo)
+                lista_codigos.pop(k)
+                lista_nombres.pop(k)
+                lista_abv.pop(k)
+                lista_pais_origen.pop(k)
+                lista_precios.pop(k)
+                lista_estilos.pop(k)
+                lista_observaciones.op(k)
+            os.system("pause")
+    if opcion_menu=="5":
+        os.system("cls")
+        print("\n-------MODIFICAR CERVEZA---------")
+        if  codigo not in lista_codigos:
+                print("No hay resgistro alguno del codigo ingresado , ingrese codigo  nuevamente")
+        else: 
+            k= lista_codigos.index(codigo)
+            lista_nombres[k]=str(input("Ingrese nombre: "))
+            lista_precios[k]=int(input("Ingrese precio: $ "))
+            lista_abv[k]=float(input("Ingrese grado alcoholico: "))
+            lista_pais_origen[k]=str(input("Ingrese el pais de origen de  la cerveza: "))
+            lista_estilos[k]=str(input("Ingrese el estilo de la cerveza"))
+            lista_observaciones[k]=str(input("Ingrese observacion: "))
+    
+        
+    if opcion_menu=="8":
+        break
