@@ -1,0 +1,143 @@
+import os
+#------------Variables-----------
+opcion_menu=""
+rut=""
+lista_rut=[]
+nombre=""
+lista_nombres=[]
+direccion=""
+lista_direcciones=[]
+correo=""
+lista_correos=[]
+edad=0
+lista_edades=[]
+sexo="" # Puede ser F / M
+lista_sexo=[]
+registro="" # Pueden ser los sintomas del paciente
+lista_registros=[]
+plan=""
+lista_planes=[]
+pos=[]
+#----------codigo principal----------
+while True:
+    os.system("cls")
+    opcion_menu=str(input('''
+    ----------MENÚ-------)
+    1.- Registrar paciente.
+    2.- Atencion Paciente.
+    3.- Consultar datos paciente .
+    4.- Salir
+    
+    Elija una opción por favor: '''))
+    if opcion_menu=="1":
+        os.system("cls")
+        print("\n-------REGISTRAR NUEVO PACIENTE-------")
+        rut=str(input("Ingrese rut del paciente , este debe ser de 9 o 10 digitos : ")).strip().upper()
+        while not len(rut)==9 or len(rut)==10:
+            print("Error...deben ser un rut valido de 9 o 10 digitos. Intente nuevamente")
+            rut=str(input("Ingrese rut del paciente , este debe ser de 9 o 10 digitos: ")).strip().upper()
+            lista_rut.append(rut)
+        lista_rut.append(rut)
+        os.system("pause")
+        
+        nombre=str(input("Ingrese nombre del paciente: ")).strip()
+        while not len(nombre)>0:
+            print("Por favor no deje este casillero en blanco , es necesario registar el nombre del paciente.")
+            nombre=str(input("ingrese nombre: ")).strip()
+        lista_nombres.append(nombre)
+        os.system("pause")
+        
+        direccion=str(input("Ingrese direccion del domicilio del paciente: "))
+        while not len(direccion)>0:
+            print("Error, ingrese una direccion de domicilio valida por favor. ")
+            direccion=str(input("Ingrese direccion del domicilio del paciente: "))
+        lista_direcciones.append(direccion)
+        os.system("pause")
+
+        correo=str(input("Ingrese direccion de correo del paciente: "))
+        while not len(correo)>0:
+            print("Error, ingrese una direccion de correo valida por favor. ")
+            correo=str(input("Ingrese direccion de correo del paciente: "))
+            
+        lista_correos.append(correo)
+        os.system("pause")
+        
+        edad = int(input("Ingrese edad del paciente: "))
+        while not 0<=edad<=110:
+            print("Error , ingrese una edad valida para el paciente [0 a 110] ")
+            edad = int(input("Ingrese edad del paciente: "))
+        lista_edades.append(edad)
+        os.system("pause")
+        
+        
+        sexo=str(input("Ingrese Sexo del paciente F/M: ")).upper()
+        while sexo not in ["F", "M"]:
+            print("Por favor ingrese si el sexo del paciente es Femenino (F) o Masculino (M). ")
+            sexo=str(input("Ingrese Sexo del paciente F/M: ")).strip()
+        lista_sexo.append(sexo)
+        os.system("pause")
+        registro=str(input("¿Desea agregar algun registro? S/N : ")).upper()
+        if registro=="N":
+            lista_registros.append("No se han aportado registros del paciente en su primer registro.")
+        else:
+            fecha=str(input("Ingrese fecha: dd/mm/aaaa :   "))
+            reg=str(input("Ingrese registro del paciente.: ")).strip()
+            registro=(f'''
+            Fecha: {fecha} 
+            {reg}
+            ''')
+            lista_registros.append(registro)
+        
+        plan=str(input("Ingrese plan medico del paciente , esta debe ser Isapre o Fonasa (Isapre/Fonasa): ")) .strip().capitalize()
+        while plan not in ["Isapre" , "Fonasa"]:
+            print("Por favor ingrese si el paciente pertenece al plan medico Isapre o Fonasa(Isapre/Fonasa): ")
+            plan=str(input("Ingrese plan medico del paciente , esta debe ser Isapre o Fonasa (Isapre/Fonasa): ")).strip()
+        lista_planes.append(plan)
+    if opcion_menu=="2":
+        os.system("cls")
+        print("\n--------Atencion del paciente--------")
+        rut=str(input("Ingrese el rut del paciente al que desea añadir una nueva atencion: ")).strip().upper()
+        if rut not in lista_rut:
+            print("El rut no coincide con ningún paciente registrado, regresando al menú principal.")
+        else:
+            pos=lista_rut.index(rut)
+            if lista_registros[pos]=="Sin observación":
+                print("Ingrese nueva observación")
+                fecha=str(input("Ingrese fecha: dd/mm/aaaa "))
+                new=str(input("Ingrese nueva observación: "))
+                lista_registros[pos]=(f"""
+Fecha: {fecha}
+{new}""")
+            else:
+                reg=lista_registros[pos]
+                print("Ingrese nuevo registo del paciente: ")
+                fecha=str(input("Ingrese fecha: dd/mm/aaaa "))
+                new=str(input("Ingrese nuevo registro: "))
+                lista_registros[pos]=(f"""
+{reg}
+Fecha: {fecha}
+{new}""")
+        os.system("pause")
+    if opcion_menu=="3":
+        os.system("cls")
+        print("\n----------Registros del Paciente----------")
+        rut=str(input("Introduzca el rut del paciente que desea buscar: ")).strip().upper()
+        while not len(rut)==9 or len(rut)==10:
+            rut=str(input("Introduzca un rut válido de 9 o 10 carcteres: ")).strip().upper()
+        if rut in lista_rut:
+            pos=lista_rut.index(rut)
+            print(f"""
+                Rut Paciente: {lista_rut[pos]}
+                Nombre Paciente:{lista_nombres[pos]}
+                Direccion Paciente:{lista_direcciones[pos]}
+                Correo Paciente: {lista_correos[pos]}
+                Edad Paciente: {lista_edades[pos]}
+                Sexo Paciente: {lista_sexo[pos]}
+                Registros Paciente:{lista_registros[pos]}
+                Plan Paciente:{lista_planes[pos]}""")
+        else:
+            print("El RUT no coincide con ningún paciente registrado, regresando al menú principal.")
+        os.system("pause")
+        os.system("cls")
+    if opcion_menu=="4":
+        break
